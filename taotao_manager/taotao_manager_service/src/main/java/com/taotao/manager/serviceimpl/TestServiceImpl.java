@@ -31,6 +31,7 @@ public class TestServiceImpl implements TestService {
     private TestMapper testMapper;
     @Override
     public String queryDate() {
+        System.out.println("hahah");
         return testMapper.queryDate();
     }
 }
