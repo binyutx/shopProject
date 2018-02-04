@@ -25,7 +25,15 @@ import java.util.List;
  */
 
 
-public interface ItemCatService {
+public interface ItemCatService extends BaseService<ItemCat>{
+
+    /**
+     * 根据商品类目父id查询数据
+     * @param parentId
+     * @return
+     */
+    List<ItemCat> queryItemCatByParentId(Long parentId);
+
     /**
      * 功能描述: <br>
      * 〈〉
@@ -37,6 +45,6 @@ public interface ItemCatService {
      * @since: 1.0.0
      * @Author:kepad
      * @Date: kepad 10:54
-     */
-    List<ItemCat> queryItemCatByPage(Integer page,Integer rows);
+
+    List<ItemCat> queryItemCatByPage(Integer page,Integer rows);*/
 }

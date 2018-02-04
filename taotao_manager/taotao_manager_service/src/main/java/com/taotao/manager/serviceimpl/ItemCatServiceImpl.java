@@ -30,8 +30,16 @@ import java.util.List;
  */
 
 @Service
-public class ItemCatServiceImpl implements ItemCatService {
-    @Autowired
+public class ItemCatServiceImpl extends BaseServiceImpl<ItemCat> implements ItemCatService {
+    @Override
+    public List<ItemCat> queryItemCatByParentId(Long parentId) {
+        //设置查询条件
+        ItemCat param = new ItemCat();
+        param.setParentId(parentId);
+        List<ItemCat> list = super.queryListByWhere(param);
+        return list;
+    }
+   /* @Autowired
     private ItemCatMapper itemCatMapper;
     @Override
     public List<ItemCat> queryItemCatByPage(Integer page, Integer rows) {
@@ -41,5 +49,5 @@ public class ItemCatServiceImpl implements ItemCatService {
         //查询
         List<ItemCat> list = this.itemCatMapper.select(null);
         return list;
-    }
+    }*/
 }

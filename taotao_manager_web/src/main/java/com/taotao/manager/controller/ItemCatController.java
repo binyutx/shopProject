@@ -15,10 +15,7 @@ import com.taotao.manager.pojo.ItemCat;
 import com.taotao.manager.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,13 +39,15 @@ public class ItemCatController {
     public List<ItemCat> queryItemCatPage(
             @PathVariable(value = "page")Integer page,
             @RequestParam(value = "rows")Integer rows){
-
-
-        System.out.println("haha11111111111111111111111111111111h");
-
-
-        List<ItemCat> list = this.itemCatService.queryItemCatByPage(page, rows);
+        //List<ItemCat> list = this.itemCatService.queryItemCatByPage(page, rows);
+        List<ItemCat> list = this.itemCatService.queryListByPage(page, rows);
         return list;
 
+    }
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public List<ItemCat> queryItemCatByParentId(@RequestParam(value = "id",defaultValue = "0")Long parentId){
+        List<ItemCat> list = this.itemCatService.queryItemCatByParentId(parentId);
+        return list;
     }
 }
