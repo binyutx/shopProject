@@ -20,6 +20,7 @@ package com.taotao.manager.service;
  */
 
 import com.taotao.manager.pojo.Item;
+import com.taotao.manager.utils.EsayUIResult;
 
 /**
  * @创建人 kepade
@@ -33,4 +34,12 @@ public interface ItemService extends BaseService<Item> {
      * @param item
      */
     void saveItem(Item item,String desc);
+
+    /**
+     * 分页查询商品
+     * @param page
+     * @param rows
+     * @return
+     */
+    EsayUIResult<Item> queryItemList(Integer page, Integer rows);
 }

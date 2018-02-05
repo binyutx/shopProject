@@ -7,12 +7,17 @@ package com.taotao.manager.serviceimpl; /**
  * @since 1.0.0
  */
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.taotao.manager.pojo.Item;
 import com.taotao.manager.pojo.ItemDesc;
 import com.taotao.manager.service.ItemDescService;
 import com.taotao.manager.service.ItemService;
+import com.taotao.manager.utils.EsayUIResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @创建人 kepade
@@ -33,5 +38,19 @@ public class ItemServiceImpl extends BaseServiceImpl<Item> implements ItemServic
         itemDesc.setItemId(item.getId());
         itemDesc.setItemDesc(desc);
         this.itemDescService.save(itemDesc);
+    }
+
+    @Override
+    public EsayUIResult<Item> queryItemList(Integer page, Integer rows) {
+        //设置分页数据
+        PageHelper.startPage(page,rows);
+        List<Item> list = super.queryListByWhere(null);
+        //获取分页详情数据
+        PageInfo<Item> pageInfo = new PageInfo<>(list);
+        //封装返回对象
+        EsayUIResult<Item> esayUIResult = new EsayUIResult<>();
+        esayUIResult.setTotal(pageInfo.getTotal());
+        esayUIResult.setRows(list);
+        return esayUIResult;
     }
 }

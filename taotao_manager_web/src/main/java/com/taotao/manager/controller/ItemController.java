@@ -9,9 +9,12 @@ package com.taotao.manager.controller; /**
 
 import com.taotao.manager.pojo.Item;
 import com.taotao.manager.service.ItemService;
+import com.taotao.manager.utils.EsayUIResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -35,5 +38,20 @@ public class ItemController {
             e.printStackTrace();
        }
        return msg;
+    }
+
+    /**
+     * 分页查询
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public EsayUIResult<Item> queryList(@RequestParam(value = "page",defaultValue = "1")Integer page,
+                                        @RequestParam(value = "rows",defaultValue = "30")Integer rows){
+        EsayUIResult<Item> esayUIResult = this.itemService.queryItemList(page,rows);
+        return esayUIResult;
+
     }
 }

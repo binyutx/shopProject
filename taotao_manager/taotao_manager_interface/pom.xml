@@ -19,7 +19,12 @@
     </properties>
 
     <dependencies>
-
+        <!--加入taotao-common依赖-->
+        <dependency>
+            <groupId>com.taotao</groupId>
+            <artifactId>taotao_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.taotao</groupId>
             <artifactId>taotao_manager_pojo</artifactId>
