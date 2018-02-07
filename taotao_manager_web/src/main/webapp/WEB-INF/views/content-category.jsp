@@ -32,12 +32,12 @@ $(function(){
                 top: e.pageY
             });
         },
-        //在编辑完成后执行以下逻辑
+        //在编辑完成后执行以下逻辑 node就是刚刚编辑的节点
         onAfterEdit : function(node){
         	var _tree = $(this);
         	//如果id为0，节点为新增节点
         	if(node.id == 0){
-        		// 新增节点，发起异步请求
+        		// 新增节点，发起异步请求 url：/rest/content/category/add？
         		//parentId:${新增的父节点id},name:${新增节点的名称}
         		$.post("/rest/content/category/add",{parentId:node.parentId,name:node.text},function(data){
         			//更新树节点信息
@@ -52,7 +52,7 @@ $(function(){
             //id不为0说明不是新增节点，而是修改节点
         	}else{
         		//发起异步请求
-        		//id:${选中树节点的id},name:${选中树节点的名称}
+        		// /rest/content/category/update？id:${选中树节点的id},name:${选中树节点的名称}
         		$.ajax({
         			   type: "POST",
         			   url: "/rest/content/category/update",

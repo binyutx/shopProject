@@ -8,6 +8,7 @@
     <module>taotao_manager</module>
     <module>taotao_manager_web</module>
       <module>itcastmybatis</module>
+      <module>taotao_portal</module>
   </modules>
   <packaging>pom</packaging>
 
