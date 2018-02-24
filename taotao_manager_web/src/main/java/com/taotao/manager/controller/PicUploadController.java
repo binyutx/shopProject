@@ -51,13 +51,14 @@ public class PicUploadController {
         //校验后缀
         for (String type : TYPE){
             String oname = uploadFile.getOriginalFilename();
+            //得到后缀名  +1 是数组不以.开始的后缀名 不加.就是以.开始的后缀名
+            //String extName = oname.substring(oname.lastIndexOf("." + 1));
             //如果后缀是要求的格式结尾，标识位设置为true，跳出循环
             if (StringUtils.endsWithIgnoreCase(oname,type)){
                 flag = true;
                 break;
             }
         }
-
             //如果校验失败，直接返回
             if (!flag){
                 String json = MAPPER.writeValueAsString(picUploadResult);
@@ -74,8 +75,11 @@ public class PicUploadController {
                     flag = true;
                 }
             }catch (Exception e){
-
+                picUploadResult.setError(1);
+                String json = MAPPER.writeValueAsString(picUploadResult);
+                return json;
             }
+
             //校验成功，需要开始上传图片
             if (flag){
                 //1.加载tracker配置文件

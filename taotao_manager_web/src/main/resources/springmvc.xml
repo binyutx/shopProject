@@ -49,4 +49,5 @@
     <dubbo:reference interface="com.taotao.manager.service.ContentService"
                      id="contentService" timeout="1000000" />
 
+
 </beans>

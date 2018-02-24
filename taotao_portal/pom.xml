@@ -17,6 +17,12 @@
             <artifactId>taotao_manager_interface</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--添加单点登录的依赖于sso-interface -->
+        <dependency>
+            <groupId>com.taotao</groupId>
+            <artifactId>taotao_sso_interface</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>taotao_portal</finalName>
@@ -27,7 +33,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <!--http://127.0.0.1:${port}/${path}-->
-                    <port>8082</port>
+                    <port>8081</port>
                     <path>/</path>
                 </configuration>
             </plugin>
